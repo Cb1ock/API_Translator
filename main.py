@@ -12,13 +12,17 @@ import os
 if __name__ == "__main__":
 
     # 检查命令行参数数量
-    if len(sys.argv) < 3:
-        print("Usage: python main.py <target_language> <audio_file_path>")
+    if len(sys.argv) < 4:
+        print("Usage: python main.py <source_language> <target_language> <audio_file_path>")
         sys.exit(1)
 
     # 获取命令行参数
-    Target_language = sys.argv[1]
-    audio_path = sys.argv[2]
+    Source_language = sys.argv[1]
+    Target_language = sys.argv[2]
+    audio_path = sys.argv[3]
+
+    # Target_language = "Chinese"
+    # audio_path = "./data/hh.m4a"
 
     API_KEY = "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"
     base_name = os.path.basename(audio_path)
@@ -26,13 +30,14 @@ if __name__ == "__main__":
 
     # 假设您已经有了检测语言的逻辑
     # 在这里您可以根据需要调整 Detected_language 的获取方式
-    Detected_language = "English"  # 或者使用您的逻辑来确定
+    Detected_language = Source_language  # 或者使用您的逻辑来确定
 
     model = "whisper-1"
     
     # ASR
     whisper_instance = whisper_user(api_key=API_KEY, model=model, audio_path=audio_path)
     transcript = whisper_instance.ASR()
+    #Detected_language = whisper_instance.detect_language()
     print(f"transcript = {transcript.text}")
     
 

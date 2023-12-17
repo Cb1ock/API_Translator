@@ -13,6 +13,14 @@ class whisper_user:
           file=audio_file
         )
         return transcript
+    
+    # def detect_language(self):
+    #     audio_file= open(self.audio, "rb")
+    #     transcript = self.client.audio.language_detection.create(
+    #       model="whisper-1", 
+    #       file=audio_file
+    #     )
+    #     return transcript.language
 
 
 '''import whisper
